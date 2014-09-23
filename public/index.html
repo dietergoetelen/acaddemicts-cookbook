@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>AngularJS - acaddemicts</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+        <div class="starter-template">
+            <h1>Cookbook</h1>
+        </div>
+        
+        <ul class="nav nav-pills">
+            <li class="pull-right"><a href="https://github.com/dietergoetelen/acaddemicts-cookbook">Github</a></li>
+            <li class="pull-right"><a ui-sref="api-info">API Informatie</a></li>
+        </ul>
+        
+        <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main" ui-view></div>
+            </div>
+        </div>
+    </div>
+      
+    <!-- libs -->
+    <script src="libs/angular.min.js"></script>
+	<script src="libs/ui-router.min.js"></script>
+
+    <!-- app -->
+    <script src="app/app.js"></script>
+      
+      <script src="app/api-info/apiInfo.js"></script>
+      
+      
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<h2>API Documentation</h2>
+
+<p>Ter info: slechte API, neem hier zeker geen voorbeeld aan. Een goede API is self documented en kan je door navigeren met behulp van URLs.</p>
+
+<h3>GET</h3>
+
+<p>
+    Lijst van verschillende auteurs
+</p>
+<pre>
+    get /api/author
+    
+    response:
+    [
+        {
+            _id: [string],
+            meta: {
+                likes: [number]
+            }
+        }
+    ]
+</pre>
+
+<p>
+    Detail auteur
+</p>
+<pre>
+    get /api/author/:authorId
+    
+    vb. 
+    /api/author/5421a81f0b4e83940fea61aa
+    
+    response:
+    {
+        _id: [string],
+        meta: {
+            likes: [number]
+        }
+    }
+</pre>
+
+<p>
+    Recepten van een auteur
+</p>
+<pre>
+    /api/author/:authorId/recipes
+    
+    vb.
+    /api/author/5421a81f0b4e83940fea61aa/recipes
+    
+    response:
+    {
+        _id: [string],
+        recipes: [
+            {
+                _id: [string],
+                description: [string],
+                title: [string],
+                ingredients: [
+                    {
+                        name: [string],
+                        amount: [number],
+                        unit: [string]
+                    }
+                ]
+            }
+        ]
+    }
+</pre>
+
+<p>
+    Ingrediënten van een recept
+</p>
+<pre>
+    get /api/author/:authorId/recipes/:recipeId/ingredients
+    
+    vb.
+    /api/author/5421a81f0b4e83940fea61aa/recipes/5421aa55f7e37bac149a7bf7/ingredients
+    
+    response:
+    [
+        {
+            name: [string],
+            amount: [number],
+            unit: [string]
+        }
+    ]
+</pre>
+
+
+<h3>POST</h3>
+<p>
+    Auteur toevoegen
+</p>
+<pre>
+    post /api/author
+    
+    Request body:
+    name=[string]
+</pre>
+
+<p>
+    Recept toevoegen
+</p>
+
+<pre>
+    post /api/author/:authorId/recipes
+    
+    request body:
+    title=[string]&description=[string]
+    
+    optional pass ingredients
+    title=[string]&description=[string]&ingredients=[arrayOfIngredients={name=[string]&amount=[number]&unit=[string]}]
+</pre>
+
+<p>
+    Ingrediënt aan recept toevoegen
+</p>
+
+<pre>
+    post /api/author/:authorId/recipes/:recipeId/ingredients
+    
+    vb.
+    /api/author/5421a7c7ddaccaa40fb5fcd2/recipes/5421aa55f7e37bac149a7bf7/ingredients
+    
+    Request body:
+    name=[string]&amount=[number]&unit=[string]
+</pre>

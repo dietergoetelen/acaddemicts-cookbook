@@ -161,7 +161,7 @@ app.post('/api/author/:authorId/recipes', function (req, res) {
                 var recipe = {
                     title: req.body.title,
                     description: req.body.description,
-                    ingredients: req.body.ingredients
+                    ingredients: req.body.ingredients || []
                 };
                 
                 item.recipes.push(recipe);
@@ -174,35 +174,6 @@ app.post('/api/author/:authorId/recipes', function (req, res) {
                 });
             }
         });
-});
-
-app.post('/api/author/:authorId/recipes/ingredients', function (req, res) {
-    
-    Recipe
-        .findOne()
-        .where('_id', req.params.authorId)
-        .select('recipes')
-        .exec(function (err, item) {
-            
-            if (err) {
-                res.send(500);
-            } else {
-                var recipe = {
-                    title: req.body.title,
-                    description: req.body.description,
-                    ingredients: req.body.ingredients
-                };
-                
-                item.recipes.push(recipe);
-                item.save(function (err) {
-                    if (err) {
-                        res.send(500);
-                    } else {
-                        res.json(item);
-                    }
-                });
-            }
-        });    
 });
 
 app.post('/api/author/:authorId/recipes/:recipeId/ingredients', function (req, res) {
@@ -239,6 +210,10 @@ app.post('/api/author/:authorId/recipes/:recipeId/ingredients', function (req, r
             }
         });
     
+});
+
+app.get('*', function (req, res) {
+    res.sendfile('public/index.html');
 });
 
 app.listen(port, function () {
