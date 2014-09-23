@@ -38,6 +38,7 @@ var handleError = function (res) {
     res.status(500).json({});
 };
 
+
 /* API
     
     get /author                                                         --> all authors 
@@ -58,18 +59,18 @@ app.get('/api/author', function (req, res) {
 });
 
 app.get('/api/author/:authorId', function (req, res) {
-    Recipe.find()
+    Recipe.findOne()
           .where('_id', req.params.authorId)
           .select('author meta')
-          .exec(function (err, items) {
-       
-        if (items.length > 0) {
-            res.json(items[0]);    
-        } else {
-            res.status(404).json({
-                message: 'not found'
-            });
-        }
+          .exec(function (err, item) {
+            
+            if (item) {
+                res.json(item);
+            } else {
+                res.status(404).json({
+                    message: 'not found'
+                });
+            }
     });
 });
 
