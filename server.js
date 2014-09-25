@@ -1,8 +1,8 @@
-var mongoose = require('mongoose'),
+var Recipe = require('./models/recipe'),
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express(),
-    Schema = mongoose.Schema,
+	mongoose = require('mongoose'),
     port = 3000;
 
 
@@ -11,28 +11,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-
-var recipeSchema = new Schema({
-    name: String,
-    recipes: [
-        {
-            title: String,
-            description: String,
-            ingredients: [
-                {
-                    name: String,
-                    amount: Number,
-                    unit: String
-                }
-            ]
-        }
-    ],
-    meta: {
-        likes: Number   
-    }
-});
-
-var Recipe = mongoose.model('Recipe', recipeSchema);
 
 var handleError = function (res) {
     res.status(500).json({});
@@ -221,4 +199,4 @@ app.listen(port, function () {
 });
 
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/recipe');
